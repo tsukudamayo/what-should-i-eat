@@ -15,4 +15,12 @@ class LikeSpider(scrapy.Spider):
         """
         @url https://www.sirogohan.com/recipe/wahuukare-/
         """
+        soup = BeautifulSoup(response.text, "html.parser")
+        title = soup.title.string
+        recipe = soup.find("div", class_="howto-block")\
+          .find_all("p")
         print("url : ", response.url)
+        print("title : ", title)
+        print("recipe")
+        for element in recipe:
+            print(element.text)
