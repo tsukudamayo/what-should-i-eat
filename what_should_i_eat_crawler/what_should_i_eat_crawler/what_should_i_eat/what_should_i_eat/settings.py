@@ -1,3 +1,5 @@
+import os
+
 # Scrapy settings for what_should_i_eat project
 #
 # For simplicity, this file contains only settings considered important or
@@ -62,9 +64,9 @@ DOWNLOAD_DELAY = 3
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'what_should_i_eat.pipelines.WhatShouldIEatPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'what_should_i_eat.pipelines.WhatShouldIEatPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
@@ -86,3 +88,5 @@ DOWNLOAD_DELAY = 3
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
