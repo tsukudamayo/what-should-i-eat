@@ -19,7 +19,7 @@ echo "Submitting PyTorch model training job to Vertex AI"
 
 PROJECT_ID=systemt-331700
 BUCKET_NAME=what-should-i-eat
-JOB_PREFIX="what-should-i-eat-model-"
+JOB_PREFIX="what-should-i-eat-model"
 JOB_NAME=${JOB_PREFIX}-$(date +%Y%m%d%H%M%S)-custom-job
 REGION="asia-northeast1"
 JOB_DIR=gs://${BUCKET_NAME}/${JOB_PREFIX}/models/${JOB_NAME}

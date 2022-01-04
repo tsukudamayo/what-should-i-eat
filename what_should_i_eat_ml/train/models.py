@@ -1,3 +1,5 @@
+from datetime import datetime
+import os
 from typing import List, Dict, Optional
 
 import numpy as np
@@ -18,6 +20,7 @@ from sentence_transformers.evaluation import TripletEvaluator
 from sentence_transformers.readers import TripletReader
 from sentence_transformers.datasets import SentencesDataset
 
+from google.cloud import storage
 
 SEED = 1
 
@@ -118,9 +121,26 @@ def train(train_data: str = "train.tsv") -> None:
     return None
 
 
+def save_model_gcs():
+    bucket_name = "what-should-i-eat"
+    local_path = "sbert/"
+    bucket = storage.Client().bucket(bucket_name)
+    files = [f for f in os.listdir(local_path) if os.path.isfile(os.path.join(local_path, f))]
+    print("local_files")
+    print(files)
+    now = datetime.now().strftime("%Y%m%d%H%M%S")
+    for f in files:
+        local_file = os.path.join(local_path, f)
+        print("local_file : ", local_file)
+        blob = bucket.blob("what-should-i-eat-model-"+now+"-custom-job/models/"+f)
+        blob.upload_from_filename(local_file)
+    return
+
+
 def main():
     generate_train_data()
     train()
+    save_model_gcs()
 
 
 if __name__ == "__main__":
