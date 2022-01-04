@@ -132,7 +132,7 @@ def save_model_gcs():
     for f in files:
         local_file = os.path.join(local_path, f)
         print("local_file : ", local_file)
-        blob = bucket.blob("what-should-i-eat-model-"+now+"-custom-job/models/"+f)
+        blob = bucket.blob("/what-should-i-eat-model-"+now+"-custom-job/models/"+f)
         blob.upload_from_filename(local_file)
     return
 
@@ -140,7 +140,7 @@ def save_model_gcs():
 def main():
     generate_train_data()
     train()
-    save_model_gcs()
+    # save_model_gcs()
 
 
 if __name__ == "__main__":
